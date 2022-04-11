@@ -1,46 +1,50 @@
-# Getting Started with Create React App
+# React Todo Project
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+### Bowtie Developer Assessment: Nolan Caine
 
-## Available Scripts
+### Mission
 
-In the project directory, you can run:
+- [ ] Build a simple todo app with React + TypeScript frontend.
+- [ ] You should have some form of data management and persistence
+  - (local storage would be a minimal viable datastore).
+- [ ] Encouraged to build a custom backend/database/api to interact with from React.
+- [ ] Bonus points for user signup/authentication!
 
-### `npm start`
+### Requirements
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+- [] A user can create/edit/delete a list of projects within the app
+- [] A user can create/edit/delete todo items within a given project
+  - (edit counts for toggling todo as “completed”)
+- [] BONUS: A user can sign up and/or sign in to the system
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+### Submission
 
-### `npm test`
+- [] The assessment will be submitted as GitHub repositories.
+- [] One repo for the React + TypeScript frontend
+- [] Any additional repos for api/backend code, etc
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Bonus Points
 
-### `npm run build`
+#### The API...
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- [] “Dockerized”
+- [] Be Versioned (route prefixed with “/api/v1/” for example)
+- [] Be RESTful (https://en.wikipedia.org/wiki/Representational_state_transfer)
+- [] Support “application/json” content-type
+- [] Support additional content types (XML, CSV, etc)
+- [] Provide authentication endpoints
+- [] Allow users to signup/signin using OAuth providers (Google, Facebook, GitHub, etc)
+- [] Provide standard CRUD endpoints for projects and todo items
+- [] Require authentication and validate access to resources
+- [] Use 401/403 response codes accordingly
+- [] Respond with accurate and meaningful information
+- [] Use appropriate HTTP code (https://en.wikipedia.org/wiki/List_of_HTTP_status_codes)
+- [] Supply relevant error/success information in the response body
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+#### The UI…
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+- [] Provide views for user signup/signin (via the API)
+- [] Provide restricted views for projects and todos
+- [] Should require authenticated user, redirect to login otherwise
+- [] Connect UI actions with API (to create/edit/delete projects and/or todo items)
+- [] Should require authenticated user, handled by API backend
