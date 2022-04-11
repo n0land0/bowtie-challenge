@@ -1,0 +1,21 @@
+{
+  "projects": [
+    {
+      "projectName": "Home",
+      "todos": [
+        {
+          "description": "take out trash",
+          "isCompleted": false
+        },
+        {
+          "description": "do laundry",
+          "isCompleted": true
+        },
+        {
+          "description": "walk dog",
+          "isCompleted": false
+        }
+      ]
+    }
+  ]
+}

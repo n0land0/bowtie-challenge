@@ -1,12 +1,19 @@
 import './styles/index.scss';
 
-import App from './App';
 import React from 'react';
-import { render } from 'react-dom';
+import { createRoot } from 'react-dom/client';
 
-render(
+import App from './App';
+
+const container = document.getElementById('root');
+if (!container) {
+  throw new Error("The element #container wasn't found");
+}
+
+const root = createRoot(container);
+
+root.render(
   <React.StrictMode>
     <App />
-  </React.StrictMode>,
-  document.getElementById('root')
+  </React.StrictMode>
 );
