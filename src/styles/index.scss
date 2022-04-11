@@ -1,0 +1,16 @@
+@import './utilities/_reset';
+@import './utilities/_mixins';
+@import './_App';
+
+html {
+  font-size: 1vw;
+}
+
+body {
+  width: 100vw;
+  height: 100vh;
+}
+
+#root {
+  @include max-wh();
+}
