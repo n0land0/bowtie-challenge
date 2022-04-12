@@ -10,6 +10,6 @@ export interface Project {
 
 export interface Todo {
   id: number;
-  isCompleted: boolean;
+  completed: boolean;
   description: string;
 }

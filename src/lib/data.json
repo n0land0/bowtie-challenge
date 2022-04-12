@@ -7,17 +7,17 @@
         {
           "id": 1,
           "description": "take out trash",
-          "isCompleted": false
+          "completed": false
         },
         {
           "id": 2,
           "description": "do laundry",
-          "isCompleted": true
+          "completed": true
         },
         {
           "id": 3,
           "description": "walk dog",
-          "isCompleted": false
+          "completed": false
         }
       ]
     },
@@ -28,17 +28,17 @@
         {
           "id": 4,
           "description": "contract work",
-          "isCompleted": true
+          "completed": true
         },
         {
           "id": 5,
           "description": "interviews",
-          "isCompleted": false
+          "completed": false
         },
         {
           "id": 6,
           "description": "take home",
-          "isCompleted": false
+          "completed": false
         }
       ]
     }
