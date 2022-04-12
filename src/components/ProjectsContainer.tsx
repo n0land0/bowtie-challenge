@@ -1,17 +1,22 @@
 import React, { FC } from 'react';
 
 import { useProjects } from '../lib/useProjects';
+import Project from './Project';
 
 interface ProjectsContainerProps {
   a?: string;
 }
 
 const ProjectsContainer: FC<ProjectsContainerProps> = () => {
-  //   const { loading, error, data } = useProjects();
-  const { data } = useProjects();
-  console.log(data);
+  //   const { loading, error, data: projectsData } = useProjects();
+  const { data: projectsData } = useProjects();
+  console.log(projectsData);
 
-  return <section>ProjectsContainer</section>;
+  const projectElements = projectsData.map((project) => (
+    <Project key={project.id} {...project} />
+  ));
+
+  return <section>{projectElements}</section>;
 };
 
 export default ProjectsContainer;
