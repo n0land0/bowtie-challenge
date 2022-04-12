@@ -22,9 +22,14 @@ const Todo: FC<TodoProps> = ({ id, completed, description }) => {
     event: FormEvent<HTMLFormElement> | FocusEvent<HTMLInputElement | Element>
   ) => {
     event.preventDefault();
+    description === newDescription
+      ? console.log('not submitted')
+      : console.log('submitted');
     // fetch call to edit todo
     // e.g. const editedTodo = { ...todo, description: newDescription }
     // e.g. updateTodo(editedTodo)
+
+    // refectch current/all projects, memoize
   };
 
   return (
@@ -35,14 +40,14 @@ const Todo: FC<TodoProps> = ({ id, completed, description }) => {
         checked={isCompleted}
         onChange={handleCompletedChange}
       />
-      <form onSubmit={handleSubmit}>
-        <input
-          type='text'
-          value={newDescription}
-          onChange={handleDescriptionChange}
-          onBlur={handleSubmit}
-        />
-      </form>
+      {/* <form onSubmit={handleSubmit}> */}
+      <input
+        type='text'
+        value={newDescription}
+        onChange={handleDescriptionChange}
+        onBlur={handleSubmit}
+      />
+      {/* </form> */}
     </div>
   );
 };
