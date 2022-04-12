@@ -1,6 +1,7 @@
 import React, { FC } from 'react';
 
 import { useProjects } from '../lib/useProjects';
+import CreateProjectForm from './CreateProjectForm';
 import Project from './Project';
 
 interface ProjectsContainerProps {
@@ -16,7 +17,12 @@ const ProjectsContainer: FC<ProjectsContainerProps> = () => {
     <Project key={project.id} {...project} />
   ));
 
-  return <section>{projectElements}</section>;
+  return (
+    <section>
+      <CreateProjectForm />
+      {projectElements}
+    </section>
+  );
 };
 
 export default ProjectsContainer;
