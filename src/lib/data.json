@@ -20,6 +20,27 @@
           "isCompleted": false
         }
       ]
+    },
+    {
+      "id": 2,
+      "projectName": "Work",
+      "todos": [
+        {
+          "id": 4,
+          "description": "contract work",
+          "isCompleted": true
+        },
+        {
+          "id": 5,
+          "description": "interviews",
+          "isCompleted": false
+        },
+        {
+          "id": 6,
+          "description": "take home",
+          "isCompleted": false
+        }
+      ]
     }
   ]
 }
