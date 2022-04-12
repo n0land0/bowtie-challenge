@@ -1,17 +1,21 @@
 {
   "projects": [
     {
+      "id": 1,
       "projectName": "Home",
       "todos": [
         {
+          "id": 1,
           "description": "take out trash",
           "isCompleted": false
         },
         {
+          "id": 2,
           "description": "do laundry",
           "isCompleted": true
         },
         {
+          "id": 3,
           "description": "walk dog",
           "isCompleted": false
         }

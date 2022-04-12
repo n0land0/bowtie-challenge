@@ -3,11 +3,13 @@ export interface AppContextProps {
 }
 
 export interface Project {
+  id: number;
   projectName: string;
   todos: Todo[];
 }
 
 export interface Todo {
+  id: number;
   isCompleted: boolean;
   description: string;
 }
