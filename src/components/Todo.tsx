@@ -3,10 +3,22 @@ import React, { FC } from 'react';
 import { Todo as TodoProps } from '../lib/models';
 
 const Todo: FC<TodoProps> = ({ id, isCompleted, description }) => {
+  const handleChange = () => {
+    // fetch call to edit todo
+    console.log('handleChange');
+  };
+
   return (
     <div>
-      <input type='checkbox' name={`todo${id}`} />
-      <label>{description}</label>
+      <label>
+        <input
+          type='checkbox'
+          name={`todo${id}`}
+          checked={isCompleted}
+          onChange={handleChange}
+        />
+        {description}
+      </label>
     </div>
   );
 };
