@@ -1,30 +1,19 @@
-import React from 'react';
+import React, { FC } from 'react';
 
-import logo from './assets/logo.svg';
-import { useProjects } from './lib/useProjects';
+import ProjectsContainer from './components/ProjectsContainer';
 
-function App() {
-  const { loading, error, data } = useProjects();
-  console.log(data);
-
-  return (
-    <div className='App'>
-      <header className='App-header'>
-        <img src={logo} className='App-logo' alt='logo' />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className='App-link'
-          href='https://reactjs.org'
-          target='_blank'
-          rel='noopener noreferrer'
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+interface AppProps {
+  a?: string;
 }
+
+const App: FC<AppProps> = () => {
+  return (
+    <main>
+      <header></header>
+      <ProjectsContainer />
+      <footer></footer>
+    </main>
+  );
+};
 
 export default App;

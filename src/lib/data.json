@@ -1,19 +1,44 @@
 {
   "projects": [
     {
+      "id": 1,
       "projectName": "Home",
       "todos": [
         {
+          "id": 1,
           "description": "take out trash",
-          "isCompleted": false
+          "completed": false
         },
         {
+          "id": 2,
           "description": "do laundry",
-          "isCompleted": true
+          "completed": true
         },
         {
+          "id": 3,
           "description": "walk dog",
-          "isCompleted": false
+          "completed": false
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "projectName": "Work",
+      "todos": [
+        {
+          "id": 4,
+          "description": "contract work",
+          "completed": true
+        },
+        {
+          "id": 5,
+          "description": "interviews",
+          "completed": false
+        },
+        {
+          "id": 6,
+          "description": "take home",
+          "completed": false
         }
       ]
     }
