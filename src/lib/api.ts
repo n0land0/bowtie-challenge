@@ -20,6 +20,18 @@ export const createProject = (projectName: string) => {
   }).then((response) => checkResponse(response));
 };
 
+export const updateProject = (projectName: string, projectId: number) => {
+  return fetch(`${apiUrl}/projects/${projectId}`, {
+    method: 'PATCH',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      projectName,
+    }),
+  }).then((response) => checkResponse(response));
+};
+
 export const getAllTodosByProject = (projectId: number) => {
   return fetch(`${apiUrl}/projects/${projectId}/todos`).then((response) =>
     checkResponse(response)
