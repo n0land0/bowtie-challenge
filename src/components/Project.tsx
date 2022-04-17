@@ -1,11 +1,11 @@
 import React, { FC, useEffect, useState } from 'react';
 
-import { getAllTodosByProject, gettAllTodosByProject } from '../lib/api';
+import { getAllTodosByProject } from '../lib/api';
 import { Project as ProjectProps, Todo as ITodo } from '../lib/models';
 import Todo from './Todo';
 
 const Project: FC<ProjectProps> = ({ id, projectName }) => {
-  const [todos, setTodos] = useState<Todo[]>([]);
+  const [todos, setTodos] = useState<ITodo[]>([]);
 
   useEffect(() => {
     const loadTodos = async () => {
