@@ -20,6 +20,12 @@ export const createProject = (projectName: string) => {
   }).then((response) => checkResponse(response));
 };
 
+export const getAllTodosByProject = (projectId: number) => {
+  return fetch(`${apiUrl}/projects/${projectId}/todos`).then((response) =>
+    checkResponse(response)
+  );
+};
+
 const checkResponse = (response: Response) => {
   if (!response.ok) throw new Error(`${response.status}: bad response`);
   return response.json();
