@@ -1,12 +1,12 @@
-import React, { ChangeEvent, FC, FormEvent, useState } from 'react';
+import React, { ChangeEvent, FC, FormEvent, useContext, useState } from 'react';
 
-import { createProject } from '../lib/api';
+import { createProject, getProjects } from '../lib/api';
+import { AppContext } from '../lib/context';
+import { useProjects } from '../lib/useProjects';
 
-interface CreateProjectFormProps {
-  a?: string;
-}
+const CreateProjectForm: FC = () => {
+  const { projects, setProjects } = useContext(AppContext);
 
-const CreateProjectForm: FC<CreateProjectFormProps> = () => {
   const [projectName, setProjectName] = useState<string>('');
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) =>
@@ -14,7 +14,11 @@ const CreateProjectForm: FC<CreateProjectFormProps> = () => {
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    createProject({ projectName, todos: [] });
+    createProject(projectName).then(() =>
+      getProjects().then((projectData) => {
+        setProjects(projectData);
+      })
+    );
     setProjectName('');
   };
 
