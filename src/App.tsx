@@ -1,6 +1,7 @@
-import React, { FC } from 'react';
+import React, { FC, useEffect } from 'react';
 
 import ProjectsContainer from './components/ProjectsContainer';
+import { createProject, getProjects } from './lib/api';
 
 interface AppProps {
   a?: string;
