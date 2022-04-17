@@ -1,6 +1,7 @@
-import { Dispatch, SetStateAction } from 'react';
+import { Dispatch, ReactNode, SetStateAction } from 'react';
 
 export interface AppContextProps {
+  children?: ReactNode | ReactNode[] | undefined;
   projects: Project[];
   setProjects: Dispatch<SetStateAction<Project[]>>;
 }

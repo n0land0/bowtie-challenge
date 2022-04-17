@@ -1,9 +1,8 @@
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 
-import mockData from './data.json';
+import { getProjects } from './api';
+import { AppContext } from './context';
 import { Project } from './models';
-
-// const apiUrl = '';
 
 export const useProjects = () => {
   const [loading, setLoading] = useState<boolean>(true);
@@ -13,8 +12,8 @@ export const useProjects = () => {
   useEffect(() => {
     const setProjectsData = async () => {
       try {
-        const projectsData = await getProjectsData();
-        setData(projectsData as Project[]);
+        const projectsData = await getProjects();
+        setData(projectsData);
         setLoading(false);
       } catch (error: any) {
         console.error(error.message);
@@ -22,22 +21,8 @@ export const useProjects = () => {
         setError(error.message);
       }
     };
-
     setProjectsData();
-  });
+  }, []);
 
   return { loading, error, data };
-};
-
-const getProjectsData = () =>
-  //   fetch(apiUrl)
-  //     .then((response) => checkResponse(response))
-  //     .then((data) => data.projects);
-  new Promise((resolve) => {
-    resolve(mockData.projects);
-  });
-
-const checkResponse = (response: Response) => {
-  if (!response.ok) throw new Error(`${response.status}: bad response`);
-  return response.json();
 };
