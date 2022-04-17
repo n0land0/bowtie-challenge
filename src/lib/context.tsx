@@ -1,13 +1,35 @@
-import React, { createContext, PropsWithChildren, useState } from 'react';
+import React, {
+  createContext,
+  PropsWithChildren,
+  useEffect,
+  useState,
+} from 'react';
 
 import { AppContextProps, Project, Todo } from './models';
+import { useProjects } from './useProjects';
 
-const AppContext = createContext<AppContextProps>({});
+export const AppContext = createContext<AppContextProps>({
+  projects: [],
+  setProjects: () => [],
+});
 
-const ContextProvider = ({ children }: PropsWithChildren<AppContextProps>) => {
-  const value = {};
+const ContextProvider = ({
+  children,
+}: PropsWithChildren<Record<string, unknown>>) => {
+  const [projects, setProjects] = useState<Project[]>([]);
 
-  return <AppContext.Provider value={value}>{children}</AppContext.Provider>;
+  const { loading, error, data } = useProjects();
+
+  useEffect(() => {
+    if (data.length) setProjects(data);
+    console.log(data);
+  }, [data]);
+
+  return (
+    <AppContext.Provider value={{ projects, setProjects }}>
+      {children}
+    </AppContext.Provider>
+  );
 };
 
 export default ContextProvider;

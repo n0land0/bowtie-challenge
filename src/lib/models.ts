@@ -1,15 +1,20 @@
+import { Dispatch, ReactNode, SetStateAction } from 'react';
+
 export interface AppContextProps {
-  a?: string;
+  children?: ReactNode | ReactNode[] | undefined;
+  projects: Project[];
+  setProjects: Dispatch<SetStateAction<Project[]>>;
 }
 
 export interface Project {
-  id: number;
+  id?: number;
   projectName: string;
   todos: Todo[];
 }
 
 export interface Todo {
-  id: number;
+  id?: number;
+  projectId?: number;
   completed: boolean;
   description: string;
 }

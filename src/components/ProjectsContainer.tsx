@@ -1,22 +1,23 @@
-import React, { FC } from 'react';
+import React, { FC, useContext } from 'react';
 
-import { useProjects } from '../lib/useProjects';
+import { AppContext } from '../lib/context';
+import { Project as IProject } from '../lib/models';
+import CreateProjectForm from './CreateProjectForm';
 import Project from './Project';
 
-interface ProjectsContainerProps {
-  a?: string;
-}
+const ProjectsContainer: FC = () => {
+  const { projects } = useContext(AppContext);
 
-const ProjectsContainer: FC<ProjectsContainerProps> = () => {
-  //   const { loading, error, data: projectsData } = useProjects();
-  const { data: projectsData } = useProjects();
-  console.log(projectsData);
-
-  const projectElements = projectsData.map((project) => (
+  const projectElements = projects.map((project: IProject) => (
     <Project key={project.id} {...project} />
   ));
 
-  return <section>{projectElements}</section>;
+  return (
+    <section>
+      <CreateProjectForm />
+      {projectElements}
+    </section>
+  );
 };
 
 export default ProjectsContainer;
