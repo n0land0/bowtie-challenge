@@ -1,5 +1,8 @@
+import { Dispatch, SetStateAction } from 'react';
+
 export interface AppContextProps {
-  a?: string;
+  projects: Project[];
+  setProjects: Dispatch<SetStateAction<Project[]>>;
 }
 
 export interface Project {

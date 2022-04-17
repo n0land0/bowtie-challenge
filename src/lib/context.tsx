@@ -8,7 +8,10 @@ import React, {
 import { AppContextProps, Project, Todo } from './models';
 import { useProjects } from './useProjects';
 
-const AppContext = createContext<AppContextProps>({});
+const AppContext = createContext<AppContextProps>({
+  projects: [],
+  setProjects: () => [],
+});
 
 const ContextProvider = ({ children }: PropsWithChildren<AppContextProps>) => {
   const [projects, setProjects] = useState<Project[]>([]);
@@ -19,7 +22,10 @@ const ContextProvider = ({ children }: PropsWithChildren<AppContextProps>) => {
     if (data.length) setProjects(data);
   }, [data]);
 
-  const value = {};
+  const value = {
+    projects,
+    setProjects,
+  };
 
   return <AppContext.Provider value={value}>{children}</AppContext.Provider>;
 };
