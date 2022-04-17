@@ -2,7 +2,7 @@ import React, { ChangeEvent, FC, FocusEvent, FormEvent, useState } from 'react';
 
 import { Todo as TodoProps } from '../lib/models';
 
-const Todo: FC<TodoProps> = ({ id, completed, description }) => {
+const Todo: FC<TodoProps> = ({ id, projectId, completed, description }) => {
   const [isCompleted, setIsCompleted] = useState(completed);
   const [newDescription, setNewDescription] = useState(description);
 

@@ -14,6 +14,7 @@ export interface Project {
 
 export interface Todo {
   id?: number;
+  projectId?: number;
   completed: boolean;
   description: string;
 }
