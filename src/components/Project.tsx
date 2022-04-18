@@ -8,9 +8,15 @@ import React, {
   useState,
 } from 'react';
 
-import { getAllTodosByProject, getProjects, updateProject } from '../lib/api';
+import {
+  deleteProject,
+  getAllTodosByProject,
+  getProjects,
+  updateProject,
+} from '../lib/api';
 import { AppContext } from '../lib/context';
 import { Project as ProjectProps, Todo as ITodo } from '../lib/models';
+import NameChangeForm from './NameChangeForm';
 import Todo from './Todo';
 
 const Project: FC<ProjectProps> = ({ id, projectName }) => {
@@ -18,7 +24,6 @@ const Project: FC<ProjectProps> = ({ id, projectName }) => {
 
   const [todos, setTodos] = useState<ITodo[]>([]);
   const [isEditing, setIsEditing] = useState(false);
-  const [inputValue, setInputValue] = useState(projectName);
 
   useEffect(() => {
     const loadTodos = async () => {
@@ -31,49 +36,34 @@ const Project: FC<ProjectProps> = ({ id, projectName }) => {
     loadTodos();
   }, [id]);
 
-  const toggleIsEditing = () => setIsEditing(!isEditing);
+  const todoElements = todos.map((todo: ITodo) => (
+    <Todo key={todo.id} {...todo} />
+  ));
 
-  const handleChange = (event: ChangeEvent<HTMLInputElement>) =>
-    setInputValue(event.target.value);
-
-  const handleBlur = (event: FocusEvent) => toggleIsEditing();
-
-  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    console.log(inputValue);
+  const handleDelete = () => {
     if (id) {
-      updateProject(inputValue, id).then(() =>
+      deleteProject(id).then(() =>
         getProjects().then((projectData) => {
-          console.log('data after submitting name change', projectData);
+          console.log('data after deleting', projectData);
           setProjects(projectData);
         })
       );
     }
-    toggleIsEditing();
   };
+  const toggleIsEditing = () => setIsEditing(!isEditing);
+  const formProps = { projectId: id, projectName, toggleIsEditing };
 
-  const todoElements = todos.map((todo: ITodo) => (
-    <Todo key={todo.id} {...todo} />
-  ));
   return (
     <article>
       {isEditing ? (
-        <form onSubmit={handleSubmit}>
-          <input
-            type='text'
-            value={inputValue}
-            onChange={handleChange}
-            onBlur={handleBlur}
-          />
-          <button>save changes</button>
-        </form>
+        <NameChangeForm {...formProps} />
       ) : (
         <div>
           <h3>{projectName}</h3>
           <button onClick={toggleIsEditing}>edit</button>
+          <button onClick={handleDelete}>delete</button>
         </div>
       )}
-
       {todoElements}
     </article>
   );
