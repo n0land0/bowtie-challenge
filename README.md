@@ -1,50 +1,40 @@
 # React Todo Project
 
-### Bowtie Developer Assessment: Nolan Caine
+### Bowtie Developer Assessment
+
+[BE repo](https://github.com/n0land0/bowtie-challenge-api)
 
 ### Mission
 
-- [ ] Build a simple todo app with React + TypeScript frontend.
-- [ ] You should have some form of data management and persistence
-  - (local storage would be a minimal viable datastore).
-- [ ] Encouraged to build a custom backend/database/api to interact with from React.
-- [ ] Bonus points for user signup/authentication!
+- [x] Build a simple todo app with React + TypeScript frontend.
+- [x] You should have some form of data management and persistence
+- [x] Encouraged to build a custom backend/database/api to interact with from React.
 
 ### Requirements
 
-- [ ] A user can create/edit/delete a list of projects within the app
-- [ ] A user can create/edit/delete todo items within a given project
+- [x] A user can create/edit/delete a list of projects within the app
+- [x] A user can create/edit/delete todo items within a given project
   - (edit counts for toggling todo as “completed”)
-- [ ] BONUS: A user can sign up and/or sign in to the system
 
 ### Submission
 
-- [ ] The assessment will be submitted as GitHub repositories.
-- [ ] One repo for the React + TypeScript frontend
+- [x] The assessment will be submitted as GitHub repositories.
+- [x] One repo for the React + TypeScript frontend
 - [ ] Any additional repos for api/backend code, etc
 
 ### Bonus Points
 
 #### The API...
 
-- [ ] “Dockerized”
-- [ ] Be Versioned (route prefixed with “/api/v1/” for example)
-- [ ] Be RESTful (https://en.wikipedia.org/wiki/Representational_state_transfer)
-- [ ] Support “application/json” content-type
-- [ ] Support additional content types (XML, CSV, etc)
-- [ ] Provide authentication endpoints
-- [ ] Allow users to signup/signin using OAuth providers (Google, Facebook, GitHub, etc)
-- [ ] Provide standard CRUD endpoints for projects and todo items
-- [ ] Require authentication and validate access to resources
+- [x] Be Versioned (route prefixed with “/api/v1/” for example)
+- [x] Be RESTful (https://en.wikipedia.org/wiki/Representational_state_transfer)
+- [x] Support “application/json” content-type
+- [x] Provide standard CRUD endpoints for projects and todo items
 - [ ] Use 401/403 response codes accordingly
-- [ ] Respond with accurate and meaningful information
+- [x] Respond with accurate and meaningful information
 - [ ] Use appropriate HTTP code (https://en.wikipedia.org/wiki/List_of_HTTP_status_codes)
 - [ ] Supply relevant error/success information in the response body
 
 #### The UI…
 
-- [ ] Provide views for user signup/signin (via the API)
-- [ ] Provide restricted views for projects and todos
-- [ ] Should require authenticated user, redirect to login otherwise
-- [ ] Connect UI actions with API (to create/edit/delete projects and/or todo items)
-- [ ] Should require authenticated user, handled by API backend
+- [x] Connect UI actions with API (to create/edit/delete projects and/or todo items)
