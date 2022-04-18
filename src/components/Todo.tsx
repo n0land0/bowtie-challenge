@@ -1,7 +1,10 @@
 import React, { ChangeEvent, FC, FocusEvent, FormEvent, useState } from 'react';
 
-import { getAllTodosByProject, updateTodo } from '../lib/api';
-import { updateTodoAndRefetchProjectTodos } from '../lib/handlers';
+import { deleteTodo, getAllTodosByProject, updateTodo } from '../lib/api';
+import {
+  deleteTodoAndRefetchProjectTodos,
+  updateTodoAndRefetchProjectTodos,
+} from '../lib/handlers';
 import { Todo as TodoProps } from '../lib/models';
 import DescriptionChangeForm from './DescriptionChangeForm';
 
@@ -42,6 +45,16 @@ const Todo: FC<TodoProps> = ({
     setNewDescription(event.target.value);
   };
 
+  const handleDelete = () => {
+    deleteTodoAndRefetchProjectTodos({
+      id,
+      projectId,
+      completed: isCompleted,
+      description: newDescription,
+      setTodos,
+    });
+  };
+
   const toggleIsEditingDescription = () =>
     setIsEditingDescription(!isEditingDescription);
 
@@ -66,6 +79,7 @@ const Todo: FC<TodoProps> = ({
           <button onClick={toggleIsEditingDescription}>edit description</button>
         </div>
       )}
+      <button onClick={handleDelete}>delete todo</button>
     </div>
   );
 };
