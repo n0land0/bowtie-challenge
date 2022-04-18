@@ -32,11 +32,9 @@ const NameChangeForm: FC<NameChangeFormProps> = ({
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    console.log(inputValue);
     if (projectId) {
-      updateProject(inputValue, projectId).then(() =>
+      updateProject(inputValue.trim(), projectId).then(() =>
         getProjects().then((projectData) => {
-          console.log('data after submitting name change', projectData);
           setProjects(projectData);
         })
       );

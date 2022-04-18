@@ -1,7 +1,35 @@
 import { Dispatch, SetStateAction } from 'react';
 
-import { deleteTodo, getAllTodosByProject, updateTodo } from './api';
-import { Todo } from './models';
+import {
+  createTodo,
+  deleteProject,
+  deleteTodo,
+  getAllTodosByProject,
+  getProjects,
+  updateTodo,
+} from './api';
+import { Project, Todo } from './models';
+
+export const deleteProjectAndRefetchProjects = (
+  id: number | undefined,
+  setProjects: Dispatch<SetStateAction<Project[]>>
+) => {
+  if (id) {
+    deleteProject(id).then(() => refetchProjects(setProjects));
+  }
+};
+
+export const createTodoAndRefetchProjectTodos = (
+  projectId: number | undefined,
+  description: string,
+  setTodos: Dispatch<SetStateAction<Todo[]>>
+) => {
+  if (projectId && setTodos) {
+    createTodo(projectId, description).then(() => {
+      refetchProjectTodos(projectId, setTodos);
+    });
+  }
+};
 
 export const updateTodoAndRefetchProjectTodos = ({
   id: todoId,
@@ -29,6 +57,12 @@ export const deleteTodoAndRefetchProjectTodos = ({
       refetchProjectTodos(projectId, setTodos)
     );
   }
+};
+
+const refetchProjects = (setProjects: Dispatch<SetStateAction<Project[]>>) => {
+  getProjects().then((projectData) => {
+    setProjects(projectData);
+  });
 };
 
 const refetchProjectTodos = (

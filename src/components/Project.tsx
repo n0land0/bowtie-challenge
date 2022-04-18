@@ -1,21 +1,16 @@
-import React, {
-  ChangeEvent,
-  FC,
-  FocusEvent,
-  FormEvent,
-  useContext,
-  useEffect,
-  useState,
-} from 'react';
+import React, { FC, useContext, useEffect, useState } from 'react';
 
 import {
   createTodo,
   deleteProject,
   getAllTodosByProject,
   getProjects,
-  updateProject,
 } from '../lib/api';
 import { AppContext } from '../lib/context';
+import {
+  createTodoAndRefetchProjectTodos,
+  deleteProjectAndRefetchProjects,
+} from '../lib/handlers';
 import { Project as ProjectProps, Todo as ITodo } from '../lib/models';
 import NameChangeForm from './NameChangeForm';
 import Todo from './Todo';
@@ -42,23 +37,11 @@ const Project: FC<ProjectProps> = ({ id, projectName }) => {
   ));
 
   const handleDelete = () => {
-    if (id) {
-      deleteProject(id).then(() =>
-        getProjects().then((projectData) => {
-          setProjects(projectData);
-        })
-      );
-    }
+    deleteProjectAndRefetchProjects(id, setProjects);
   };
 
   const handleAddTodo = () => {
-    if (id) {
-      createTodo(id, 'new todo').then(() =>
-        getAllTodosByProject(id).then((todosData) => {
-          setTodos(todosData);
-        })
-      );
-    }
+    createTodoAndRefetchProjectTodos(id, 'new todo', setTodos);
   };
 
   const toggleIsEditingName = () => setIsEditingName(!isEditingName);

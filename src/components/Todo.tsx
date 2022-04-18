@@ -35,7 +35,7 @@ const Todo: FC<TodoProps> = ({
       id,
       projectId,
       completed: isCompleted,
-      description: newDescription,
+      description: newDescription.trim(),
       setTodos,
     });
     toggleIsEditingDescription();
