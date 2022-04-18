@@ -1,49 +1,71 @@
 import React, { ChangeEvent, FC, FocusEvent, FormEvent, useState } from 'react';
 
+import { getAllTodosByProject, updateTodo } from '../lib/api';
+import { updateTodoAndRefetchProjectTodos } from '../lib/handlers';
 import { Todo as TodoProps } from '../lib/models';
+import DescriptionChangeForm from './DescriptionChangeForm';
 
-const Todo: FC<TodoProps> = ({ id, projectId, completed, description }) => {
+const Todo: FC<TodoProps> = ({
+  id,
+  projectId,
+  completed,
+  description,
+  setTodos,
+}) => {
   const [isCompleted, setIsCompleted] = useState(completed);
+  const [isEditingDescription, setIsEditingDescription] = useState(false);
   const [newDescription, setNewDescription] = useState(description);
 
-  // separate change handlers for description & checkbox?
   const handleCompletedChange = (event: ChangeEvent<HTMLInputElement>) => {
-    // fetch call to edit todo
-    // e.g. const editedTodo = { ...todo, completed: isCompleted }
-    // e.g. updateTodo(editedTodo)
-    setIsCompleted(event.target.checked);
+    setIsCompleted(event.target.checked); // isCompleted not updating in time to be used with fetch call 🤔
+    updateTodoAndRefetchProjectTodos({
+      id,
+      projectId,
+      completed: event.target.checked,
+      description: newDescription,
+      setTodos,
+    });
+  };
+
+  const handleSaveDescription = () => {
+    updateTodoAndRefetchProjectTodos({
+      id,
+      projectId,
+      completed: isCompleted,
+      description: newDescription,
+      setTodos,
+    });
+    toggleIsEditingDescription();
   };
 
   const handleDescriptionChange = (event: ChangeEvent<HTMLInputElement>) => {
     setNewDescription(event.target.value);
   };
 
-  const handleSubmit = (
-    event: FormEvent<HTMLFormElement> | FocusEvent<HTMLInputElement | Element>
-  ) => {
-    event.preventDefault();
-    description === newDescription
-      ? console.log('not submitted')
-      : console.log('submitted');
-  };
+  const toggleIsEditingDescription = () =>
+    setIsEditingDescription(!isEditingDescription);
 
-  // const handleSaveDescription = () => {};
+  const formProps = {
+    newDescription,
+    handleDescriptionChange,
+    handleSaveDescription,
+  };
 
   return (
     <div>
       <input
         type='checkbox'
-        name={`todo${id}`}
         checked={isCompleted}
         onChange={handleCompletedChange}
       />
-      <input
-        type='text'
-        value={newDescription}
-        onChange={handleDescriptionChange}
-        onBlur={handleSubmit}
-      />
-      {/* <button onClick={handleSaveDescription}>save description</button> */}
+      {isEditingDescription ? (
+        <DescriptionChangeForm {...formProps} />
+      ) : (
+        <div>
+          <p>{newDescription}</p>
+          <button onClick={toggleIsEditingDescription}>edit description</button>
+        </div>
+      )}
     </div>
   );
 };
