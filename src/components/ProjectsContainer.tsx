@@ -1,3 +1,4 @@
+import { Flex, Heading, VStack } from '@chakra-ui/react';
 import React, { FC, useContext } from 'react';
 
 import { AppContext } from '../lib/context';
@@ -13,10 +14,18 @@ const ProjectsContainer: FC = () => {
   ));
 
   return (
-    <section>
+    <>
       <CreateProjectForm />
-      {projectElements.length ? projectElements : 'No projects created yet!'}
-    </section>
+      <Flex direction='column' w='100%' alignItems='center' overflow='scroll'>
+        {projectElements.length ? (
+          projectElements
+        ) : (
+          <Heading as='h4' size='md' m='20'>
+            No projects created yet!
+          </Heading>
+        )}
+      </Flex>
+    </>
   );
 };
 
