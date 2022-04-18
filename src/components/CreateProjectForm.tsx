@@ -26,7 +26,14 @@ const CreateProjectForm: FC = () => {
     <>
       <h2>Create a new project</h2>
       <form onSubmit={handleSubmit}>
-        <input onChange={handleChange} type='text' value={projectName} />
+        <input
+          onChange={handleChange}
+          type='text'
+          value={projectName}
+          placeholder='project name'
+          required
+        />
+        <button>create project</button>
       </form>
     </>
   );
