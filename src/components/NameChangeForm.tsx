@@ -13,13 +13,13 @@ import { AppContext } from '../lib/context';
 interface NameChangeFormProps {
   projectId: number | undefined;
   projectName: string;
-  toggleIsEditing: () => void;
+  toggleIsEditingName: () => void;
 }
 
 const NameChangeForm: FC<NameChangeFormProps> = ({
   projectId,
   projectName,
-  toggleIsEditing,
+  toggleIsEditingName,
 }) => {
   const { setProjects } = useContext(AppContext);
 
@@ -28,7 +28,7 @@ const NameChangeForm: FC<NameChangeFormProps> = ({
   const handleChange = (event: ChangeEvent<HTMLInputElement>) =>
     setInputValue(event.target.value);
 
-  const handleBlur = (event: FocusEvent) => toggleIsEditing();
+  const handleBlur = (event: FocusEvent) => toggleIsEditingName();
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -41,7 +41,7 @@ const NameChangeForm: FC<NameChangeFormProps> = ({
         })
       );
     }
-    toggleIsEditing();
+    toggleIsEditingName();
   };
 
   return (

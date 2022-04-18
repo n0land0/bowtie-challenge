@@ -9,6 +9,7 @@ import React, {
 } from 'react';
 
 import {
+  createTodo,
   deleteProject,
   getAllTodosByProject,
   getProjects,
@@ -23,7 +24,7 @@ const Project: FC<ProjectProps> = ({ id, projectName }) => {
   const { setProjects } = useContext(AppContext);
 
   const [todos, setTodos] = useState<ITodo[]>([]);
-  const [isEditing, setIsEditing] = useState(false);
+  const [isEditingName, setIsEditingName] = useState(false);
 
   useEffect(() => {
     const loadTodos = async () => {
@@ -50,21 +51,37 @@ const Project: FC<ProjectProps> = ({ id, projectName }) => {
       );
     }
   };
-  const toggleIsEditing = () => setIsEditing(!isEditing);
-  const formProps = { projectId: id, projectName, toggleIsEditing };
+
+  const handleAddTodo = () => {
+    if (id) {
+      createTodo(id, 'new todo').then(() =>
+        getAllTodosByProject(id).then((todosData) => {
+          console.log('data after adding todo', todosData);
+          setTodos(todosData);
+        })
+      );
+    }
+  };
+
+  const toggleIsEditingName = () => setIsEditingName(!isEditingName);
+
+  const formProps = { projectId: id, projectName, toggleIsEditingName };
 
   return (
     <article>
-      {isEditing ? (
+      {isEditingName ? (
         <NameChangeForm {...formProps} />
       ) : (
         <div>
           <h3>{projectName}</h3>
-          <button onClick={toggleIsEditing}>edit</button>
-          <button onClick={handleDelete}>delete</button>
+          <button onClick={toggleIsEditingName}>edit project name</button>
+          <button onClick={handleDelete}>delete project</button>
+          <button onClick={handleAddTodo}>add todo</button>
         </div>
       )}
-      {todoElements}
+      {todoElements.length
+        ? todoElements
+        : 'No todos added yet for this project.'}
     </article>
   );
 };

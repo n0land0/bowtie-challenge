@@ -47,6 +47,19 @@ export const getAllTodosByProject = (projectId: number) => {
   );
 };
 
+export const createTodo = (projectId: number, todoDescription: string) => {
+  return fetch(`${apiUrl}/projects/${projectId}/todos`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      projectId,
+      todoDescription,
+    }),
+  }).then((response) => checkResponse(response));
+};
+
 const checkResponse = (response: Response) => {
   if (!response.ok) throw new Error(`${response.status}: bad response`);
   return response.json();
