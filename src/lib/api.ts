@@ -32,6 +32,15 @@ export const updateProject = (projectName: string, projectId: number) => {
   }).then((response) => checkResponse(response));
 };
 
+export const deleteProject = (projectId: number) => {
+  return fetch(`${apiUrl}/projects/${projectId}`, {
+    method: 'DELETE',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  }).then((response) => checkResponse(response));
+};
+
 export const getAllTodosByProject = (projectId: number) => {
   return fetch(`${apiUrl}/projects/${projectId}/todos`).then((response) =>
     checkResponse(response)
