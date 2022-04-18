@@ -25,12 +25,9 @@ const Todo: FC<TodoProps> = ({ id, projectId, completed, description }) => {
     description === newDescription
       ? console.log('not submitted')
       : console.log('submitted');
-    // fetch call to edit todo
-    // e.g. const editedTodo = { ...todo, description: newDescription }
-    // e.g. updateTodo(editedTodo)
-
-    // refectch current/all projects, memoize
   };
+
+  // const handleSaveDescription = () => {};
 
   return (
     <div>
@@ -40,14 +37,13 @@ const Todo: FC<TodoProps> = ({ id, projectId, completed, description }) => {
         checked={isCompleted}
         onChange={handleCompletedChange}
       />
-      {/* <form onSubmit={handleSubmit}> */}
       <input
         type='text'
         value={newDescription}
         onChange={handleDescriptionChange}
         onBlur={handleSubmit}
       />
-      {/* </form> */}
+      {/* <button onClick={handleSaveDescription}>save description</button> */}
     </div>
   );
 };
