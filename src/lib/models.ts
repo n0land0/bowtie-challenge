@@ -17,4 +17,5 @@ export interface Todo {
   projectId?: number;
   completed: boolean;
   description: string;
+  setTodos?: Dispatch<SetStateAction<Todo[]>>;
 }
