@@ -22,7 +22,6 @@ const ContextProvider = ({
 
   useEffect(() => {
     if (data.length) setProjects(data);
-    console.log(data);
   }, [data]);
 
   return (
