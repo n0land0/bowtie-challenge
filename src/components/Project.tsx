@@ -1,3 +1,4 @@
+import { Button, Flex, Heading, Spacer, Text } from '@chakra-ui/react';
 import React, { FC, useContext, useEffect, useState } from 'react';
 
 import {
@@ -49,21 +50,66 @@ const Project: FC<ProjectProps> = ({ id, projectName }) => {
   const formProps = { projectId: id, projectName, toggleIsEditingName };
 
   return (
-    <article>
-      {isEditingName ? (
-        <NameChangeForm {...formProps} />
-      ) : (
-        <div>
-          <h3>{projectName}</h3>
-          <button onClick={toggleIsEditingName}>edit project name</button>
-          <button onClick={handleDelete}>delete project</button>
-          <button onClick={handleAddTodo}>add todo</button>
-        </div>
-      )}
-      {todoElements.length
-        ? todoElements
-        : 'No todos added yet for this project.'}
-    </article>
+    <Flex
+      as='article'
+      direction='column'
+      alignItems='center'
+      w='50%'
+      m='2.5'
+      p='2.5'
+      bg='blue.100'
+      borderRadius='md'
+      boxShadow='md'
+      textAlign='center'
+    >
+      <Flex direction='column' justifyContent='center' h='40'>
+        {isEditingName ? (
+          <NameChangeForm {...formProps} />
+        ) : (
+          <>
+            <Heading as='h3' size='lg' m='2.5' textAlign='center'>
+              {projectName}
+            </Heading>
+            <Flex m='2.5'>
+              <Button
+                type='submit'
+                onClick={toggleIsEditingName}
+                colorScheme={'teal'}
+                m='1'
+                boxShadow='base'
+              >
+                edit project name
+              </Button>
+              <Button
+                type='submit'
+                onClick={handleDelete}
+                colorScheme='red'
+                m='1'
+                boxShadow='base'
+              >
+                delete project
+              </Button>
+              <Button
+                type='submit'
+                onClick={handleAddTodo}
+                colorScheme='purple'
+                m='1'
+                boxShadow='base'
+              >
+                add todo
+              </Button>
+            </Flex>
+          </>
+        )}
+      </Flex>
+      <Flex direction='column' w='100%'>
+        {todoElements.length ? (
+          todoElements
+        ) : (
+          <Text fontSize='lg'>No todos added yet for this project.</Text>
+        )}
+      </Flex>
+    </Flex>
   );
 };
 

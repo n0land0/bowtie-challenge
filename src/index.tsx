@@ -1,5 +1,6 @@
 import './styles/index.scss';
 
+import { ChakraProvider } from '@chakra-ui/react';
 import React from 'react';
 import { createRoot } from 'react-dom/client';
 
@@ -16,7 +17,9 @@ const root = createRoot(container);
 root.render(
   <React.StrictMode>
     <ContextProvider>
-      <App />
+      <ChakraProvider resetCSS={true}>
+        <App />
+      </ChakraProvider>
     </ContextProvider>
   </React.StrictMode>
 );

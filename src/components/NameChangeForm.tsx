@@ -1,3 +1,4 @@
+import { Button, FormControl, Input } from '@chakra-ui/react';
 import React, {
   ChangeEvent,
   FC,
@@ -28,8 +29,6 @@ const NameChangeForm: FC<NameChangeFormProps> = ({
   const handleChange = (event: ChangeEvent<HTMLInputElement>) =>
     setInputValue(event.target.value);
 
-  const handleBlur = (event: FocusEvent) => toggleIsEditingName();
-
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     if (projectId) {
@@ -43,14 +42,27 @@ const NameChangeForm: FC<NameChangeFormProps> = ({
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <input
-        type='text'
-        value={inputValue}
-        onChange={handleChange}
-        onBlur={handleBlur}
-      />
-      <button>save changes</button>
+    <form onSubmit={handleSubmit} style={{ width: '100%' }}>
+      <FormControl
+        isRequired
+        display='flex'
+        justifyContent='center'
+        alignItems='center'
+        w='100%'
+      >
+        <Input
+          type='text'
+          value={inputValue}
+          onChange={handleChange}
+          bg='white'
+          fontSize='xl'
+          w='70%'
+          m='2'
+        />
+        <Button type='submit' colorScheme='teal' m='2'>
+          save changes
+        </Button>
+      </FormControl>
     </form>
   );
 };

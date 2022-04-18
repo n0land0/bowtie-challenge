@@ -1,3 +1,4 @@
+import { Button, Checkbox, Flex, Text } from '@chakra-ui/react';
 import React, { ChangeEvent, FC, FocusEvent, FormEvent, useState } from 'react';
 
 import { deleteTodo, getAllTodosByProject, updateTodo } from '../lib/api';
@@ -31,6 +32,7 @@ const Todo: FC<TodoProps> = ({
   };
 
   const handleSaveDescription = () => {
+    console.log('handleSaveDesc');
     updateTodoAndRefetchProjectTodos({
       id,
       projectId,
@@ -65,22 +67,44 @@ const Todo: FC<TodoProps> = ({
   };
 
   return (
-    <div>
-      <input
-        type='checkbox'
-        checked={isCompleted}
+    <Flex w='100%' m='1' h='12'>
+      <Checkbox
+        isChecked={isCompleted}
         onChange={handleCompletedChange}
+        size='lg'
+        m='2'
       />
-      {isEditingDescription ? (
-        <DescriptionChangeForm {...formProps} />
-      ) : (
-        <div>
-          <p>{newDescription}</p>
-          <button onClick={toggleIsEditingDescription}>edit description</button>
-        </div>
-      )}
-      <button onClick={handleDelete}>delete todo</button>
-    </div>
+      <Flex w='100%' alignItems='center'>
+        {isEditingDescription ? (
+          <DescriptionChangeForm {...formProps} />
+        ) : (
+          <>
+            <Text fontSize='xl' m='4'>
+              {newDescription}
+            </Text>
+            <Button
+              type='submit'
+              onClick={toggleIsEditingDescription}
+              colorScheme={'teal'}
+              m='1'
+              boxShadow='base'
+            >
+              edit description
+            </Button>
+          </>
+        )}
+        <Button
+          type='submit'
+          onClick={handleDelete}
+          w='18%'
+          m='1'
+          colorScheme='red'
+          boxShadow='base'
+        >
+          delete todo
+        </Button>
+      </Flex>
+    </Flex>
   );
 };
 
