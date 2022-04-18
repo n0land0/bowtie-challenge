@@ -1,6 +1,6 @@
 import { Project } from './models';
 
-const apiUrl = '/api/v1';
+const apiUrl = 'http://localhost:3001/api/v1';
 
 export const getProjects = () => {
   return fetch(`${apiUrl}/projects`).then((response) =>
