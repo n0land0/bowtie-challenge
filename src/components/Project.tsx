@@ -24,7 +24,6 @@ const Project: FC<ProjectProps> = ({ id, projectName }) => {
 
   const [todos, setTodos] = useState<ITodo[]>([]);
   const [isEditing, setIsEditing] = useState(false);
-  const [inputValue, setInputValue] = useState(projectName);
 
   useEffect(() => {
     const loadTodos = async () => {
@@ -41,55 +40,30 @@ const Project: FC<ProjectProps> = ({ id, projectName }) => {
     <Todo key={todo.id} {...todo} />
   ));
 
-  const toggleIsEditing = () => setIsEditing(!isEditing);
-
-  const handlers = {
-    handleChange(event: ChangeEvent<HTMLInputElement>) {
-      setInputValue(event.target.value);
-    },
-
-    handleBlur(event: FocusEvent) {
-      toggleIsEditing();
-    },
-
-    handleSubmit(event: FormEvent<HTMLFormElement>) {
-      event.preventDefault();
-      console.log(inputValue);
-      if (id) {
-        updateProject(inputValue, id).then(() =>
-          getProjects().then((projectData) => {
-            console.log('data after submitting name change', projectData);
-            setProjects(projectData);
-          })
-        );
-      }
-      toggleIsEditing();
-    },
-
-    handleDelete() {
-      if (id) {
-        deleteProject(id).then(() =>
-          getProjects().then((projectData) => {
-            console.log('data after deleting', projectData);
-            setProjects(projectData);
-          })
-        );
-      }
-    },
+  const handleDelete = () => {
+    if (id) {
+      deleteProject(id).then(() =>
+        getProjects().then((projectData) => {
+          console.log('data after deleting', projectData);
+          setProjects(projectData);
+        })
+      );
+    }
   };
+  const toggleIsEditing = () => setIsEditing(!isEditing);
+  const formProps = { projectId: id, projectName, toggleIsEditing };
 
   return (
     <article>
       {isEditing ? (
-        <NameChangeForm inputValue={inputValue} {...handlers} />
+        <NameChangeForm {...formProps} />
       ) : (
         <div>
           <h3>{projectName}</h3>
           <button onClick={toggleIsEditing}>edit</button>
-          <button onClick={handlers.handleDelete}>delete</button>
+          <button onClick={handleDelete}>delete</button>
         </div>
       )}
-
       {todoElements}
     </article>
   );
