@@ -33,16 +33,12 @@ export const updateProject = (projectName: string, projectId: number) => {
 };
 
 export const deleteProject = (projectId: number) => {
-  return deleteAllTodosByProject(projectId)
-    .then((response) => checkResponse(response))
-    .then(() =>
-      fetch(`${apiUrl}/projects/${projectId}`, {
-        method: 'DELETE',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      }).then((response) => checkResponse(response))
-    );
+  return fetch(`${apiUrl}/projects/${projectId}`, {
+    method: 'DELETE',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  }).then((response) => checkResponse(response));
 };
 
 export const getAllTodosByProject = (projectId: number) => {
