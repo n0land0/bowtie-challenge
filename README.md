@@ -4,6 +4,8 @@
 
 [BE repo](https://github.com/n0land0/bowtie-challenge-api)
 
+To use this application, clone down both repositories to your local machine. Run commands `npm i` and `npm start` in the back end repo, then do the same for the front end.
+
 ### Mission
 
 - [x] Build a simple todo app with React + TypeScript frontend.
