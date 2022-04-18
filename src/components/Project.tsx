@@ -38,14 +38,13 @@ const Project: FC<ProjectProps> = ({ id, projectName }) => {
   }, [id]);
 
   const todoElements = todos.map((todo: ITodo) => (
-    <Todo key={todo.id} {...todo} />
+    <Todo key={todo.id} {...todo} setTodos={setTodos} />
   ));
 
   const handleDelete = () => {
     if (id) {
       deleteProject(id).then(() =>
         getProjects().then((projectData) => {
-          console.log('data after deleting', projectData);
           setProjects(projectData);
         })
       );
@@ -56,7 +55,6 @@ const Project: FC<ProjectProps> = ({ id, projectName }) => {
     if (id) {
       createTodo(id, 'new todo').then(() =>
         getAllTodosByProject(id).then((todosData) => {
-          console.log('data after adding todo', todosData);
           setTodos(todosData);
         })
       );
