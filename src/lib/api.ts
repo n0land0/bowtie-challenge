@@ -39,7 +39,6 @@ export const deleteProject = (projectId: number) => {
       'Content-Type': 'application/json',
     },
   }).then((response) => checkResponse(response));
-  // remember to invoke delete todos fxn here
 };
 
 export const getAllTodosByProject = (projectId: number) => {
@@ -77,6 +76,24 @@ export const updateTodo = (
       description,
       completed,
     }),
+  }).then((response) => checkResponse(response));
+};
+
+export const deleteTodo = (todoId: number, projectId: number) => {
+  return fetch(`${apiUrl}/projects/${projectId}/todos/${todoId}`, {
+    method: 'DELETE',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  }).then((response) => checkResponse(response));
+};
+
+const deleteAllTodosByProject = (projectId: number) => {
+  return fetch(`${apiUrl}/projects/${projectId}/todos`, {
+    method: 'DELETE',
+    headers: {
+      'Content-Type': 'application/json',
+    },
   }).then((response) => checkResponse(response));
 };
 

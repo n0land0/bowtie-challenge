@@ -15,7 +15,7 @@ const ProjectsContainer: FC = () => {
   return (
     <section>
       <CreateProjectForm />
-      {projectElements}
+      {projectElements.length ? projectElements : 'No projects created yet!'}
     </section>
   );
 };

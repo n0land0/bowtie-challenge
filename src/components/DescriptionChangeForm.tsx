@@ -1,11 +1,4 @@
-import React, {
-  ChangeEvent,
-  FC,
-  FocusEvent,
-  FormEvent,
-  useContext,
-  useState,
-} from 'react';
+import React, { ChangeEvent, FC } from 'react';
 
 interface DescriptionChangeFormProps {
   newDescription: string;
