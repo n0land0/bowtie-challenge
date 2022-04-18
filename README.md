@@ -17,6 +17,7 @@ To use this application, clone down both repositories to your local machine. Run
 - Past week-plus has been pretty brutal on a few fronts and I would've liked to have been able to spread my time out a bit in working on this, rather than cramming into a couple nights.
 - Not much in the way of error-handling on either end, which was a casualty of the time window - would've liked to get to differentiating status codes, etc.
 - Tried to deploy the FE but ran into CORS errors, and couldn't solve by proxying the URL or passing options to `cors()`.
+- Usually would've written at least an endpoints guide for the backend repo.
 
 ***
 
